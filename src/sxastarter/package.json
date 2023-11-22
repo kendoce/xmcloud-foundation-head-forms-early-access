@@ -13,8 +13,8 @@
     "language": "en",
     "templates": [
       "nextjs",
-      "nextjs-sxa",
       "nextjs-xmcloud",
+      "nextjs-sxa",
       "nextjs-multisite"
     ]
   },
