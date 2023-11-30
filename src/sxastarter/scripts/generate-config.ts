@@ -21,6 +21,7 @@ const defaultConfig: JssConfig = {
   defaultLanguage: process.env[`${constantCase('defaultLanguage')}`],
   graphQLEndpoint: process.env[`${constantCase('graphQLEndpoint')}`],
   layoutServiceConfigurationName: process.env[`${constantCase('layoutServiceConfigurationName')}`],
+  publicUrl: process.env[`${constantCase('publicUrl')}`],
 };
 
 generateConfig(defaultConfig);
@@ -57,6 +58,7 @@ const config = {};\n`;
   Object.keys(config).forEach((prop) => {
     configText += `config.${prop} = process.env.${constantCase(prop)} || '${config[prop]}',\n`;
   });
+
   configText += `module.exports = config;`;
 
   const configPath = path.resolve('src/temp/config.js');

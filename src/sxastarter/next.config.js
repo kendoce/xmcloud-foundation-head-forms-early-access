@@ -1,8 +1,7 @@
 const jssConfig = require('./src/temp/config');
-const { getPublicUrl } = require('@sitecore-jss/sitecore-jss-nextjs/utils');
 const plugins = require('./src/temp/next-config-plugins') || {};
 
-const publicUrl = getPublicUrl();
+const publicUrl = jssConfig.publicUrl;
 
 /**
  * @type {import('next').NextConfig}
@@ -22,12 +21,12 @@ const nextConfig = {
   i18n: {
     // These are all the locales you want to support in your application.
     // These should generally match (or at least be a subset of) those in Sitecore.
-    locales: ['en', 'da', 'ja-JP'],
+    locales: ['en'],
     // This is the locale that will be used when visiting a non-locale
     // prefixed path e.g. `/styleguide`.
     defaultLocale: jssConfig.defaultLanguage,
   },
-  
+
   // Enable React Strict Mode
   reactStrictMode: true,
 
@@ -53,7 +52,7 @@ const nextConfig = {
       {
         source: '/sitecore/service/:path*',
         destination: `${jssConfig.sitecoreApiHost}/sitecore/service/:path*`,
-      }, 
+      },
     ];
   },
 };
@@ -61,4 +60,4 @@ const nextConfig = {
 module.exports = () => {
   // Run the base config through any configured plugins
   return Object.values(plugins).reduce((acc, plugin) => plugin(acc), nextConfig);
-}
+};
